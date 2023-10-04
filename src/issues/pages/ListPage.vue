@@ -2,8 +2,6 @@
 import LoaderSpinner from 'src/shared/components/LoaderSpinner.vue';
 import FilterSelector from '../components/filter-selector/FilterSelector.vue';
 import IssueList from '../components/issue-list/IssueList.vue';
-
-console.log(process.env);
 </script>
 
 <template>
