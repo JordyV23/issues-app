@@ -13,9 +13,13 @@ export const useIssuesStore = defineStore('Issues', () => {
     //Getters
 
     //Actions
+    toggleLabel(labelName: string) {
+      if (labels.value.includes(labelName)) {
+        labels.value = labels.value.filter((label) => label !== labelName);
+        return;
+      }
 
-    toggleLable(labelName: string) {
-      throw new Error('Metodo no implementado');
+      labels.value.push(labelName);
     },
   };
 });
