@@ -11,7 +11,7 @@ const props = defineProps<Props>();
 
 <template>
   <div class="row">
-    <span id="nothing-message" v-if="props.issues">
+    <span id="nothing-message" v-if="!props.issues">
       There's nothing to show
     </span>
     <IssueCard v-for="issue of props.issues" :key="issue.id" :issue="issue" />

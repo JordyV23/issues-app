@@ -5,10 +5,17 @@ import IssueList from '../components/issue-list/IssueList.vue';
 import useIssues from '../composables/useIssues';
 import FloatingButtons from '../components/FloatingButtons.vue';
 import { sizes } from '../interfaces/button';
-const { issuesQuery } = useIssues();
+import NewIssueDialog from '../components/NewIssueDialog.vue';
+import { ref } from 'vue';
+import useLabels from '../composables/useLabels';
 
-const addIssue = () => {
-  console.log('Add Issue');
+const { issuesQuery } = useIssues();
+const { data: labels } = useLabels();
+
+const isOpen = ref<boolean>(false);
+
+const openDialog = () => {
+  isOpen.value = true;
 };
 </script>
 
@@ -37,8 +44,15 @@ const addIssue = () => {
   <!-- Floating Buttons -->
   <FloatingButtons
     :buttons="[
-      { icon: 'add', size: sizes.lg, action: addIssue, color: 'primary' },
+      { icon: 'add', size: sizes.lg, action: openDialog, color: 'primary' },
     ]"
+  />
+
+  <!-- New issue Dialog -->
+  <NewIssueDialog
+    :isOpen="isOpen"
+    :labels="labels?.map((label) => label.name) || []"
+    @onClose="isOpen = false"
   />
 </template>
 
