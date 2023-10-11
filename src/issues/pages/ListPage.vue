@@ -3,8 +3,13 @@ import LoaderSpinner from 'src/shared/components/LoaderSpinner.vue';
 import FilterSelector from '../components/filter-selector/FilterSelector.vue';
 import IssueList from '../components/issue-list/IssueList.vue';
 import useIssues from '../composables/useIssues';
-
+import FloatingButtons from '../components/FloatingButtons.vue';
+import { sizes } from '../interfaces/button';
 const { issuesQuery } = useIssues();
+
+const addIssue = () => {
+  console.log('Add Issue');
+};
 </script>
 
 <template>
@@ -28,6 +33,13 @@ const { issuesQuery } = useIssues();
       <IssueList v-else :issues="issuesQuery.data!.value || []" />
     </div>
   </div>
+
+  <!-- Floating Buttons -->
+  <FloatingButtons
+    :buttons="[
+      { icon: 'add', size: sizes.lg, action: addIssue, color: 'primary' },
+    ]"
+  />
 </template>
 
 <style scoped></style>
